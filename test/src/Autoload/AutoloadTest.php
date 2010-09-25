@@ -4,7 +4,7 @@ namespace Autoload;
 
 require_once 'PHPUnit/Framework.php';
 
-require_once dirname(__FILE__) . '/../../../../src/Autoload/Autoload.php';
+require_once dirname(__FILE__) . '/../../../src/Autoload/Autoload.php';
 
 use Autoload\Autoload;
 
