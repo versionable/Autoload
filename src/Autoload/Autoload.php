@@ -2,6 +2,10 @@
 
 namespace Autoload;
 
+include(__DIR__.'/Exception/AutoloadException.php');
+
+use Autoload\Exception\AutoloadException;
+
 /**
  * Autoloader based on the SplClassLoader implementation that implements the
  * technical interoperability standards for PHP 5.3 namespaces and class names.
@@ -58,11 +62,11 @@ class Autoload
   /**
    * Gets the namespace separator used by classes in the namespace of this class loader.
    *
-   * @return string $namespaceSeperator.
+   * @return string $namespaceSeparator.
    */
-  public function getNamespaceSeperator()
+  public function getNamespaceSeparator()
   {
-    return $this->namespaceSeperator;
+    return $this->namespaceSeparator;
   }
 
   /**
@@ -115,7 +119,7 @@ class Autoload
    * @param array $registrations
    * @return void
    */
-  public function registerNamespaces(array $registratons)
+  public function registerNamespaces(array $registrations)
   {
     foreach($registrations as $namespace => $includePath)
     {
@@ -169,7 +173,7 @@ class Autoload
 
         if(!file_exists($path))
         {
-          throw new Exception("File ($path) does not exist");
+          throw new AutoloadException(sprintf("File %s does not exist", $path));
         }
 
         require $path;
@@ -178,6 +182,6 @@ class Autoload
       }
     }
 
-    throw new Exception("Class ($className) or Interface not found.");
+    throw new AutoloadException(sprintf("Class or Interface '%s' not found.", $className));
   }
 }

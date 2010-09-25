@@ -39,7 +39,7 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
    * This method is called after a test is executed.
    */
   protected function tearDown() {
-
+    $this->object->unregister();
   }
 
   /**
@@ -55,93 +55,98 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * @todo Implement testGetNamespaceSeperator().
+   * @todo Implement testGetNamespaceSeparator().
    */
-  public function testGetNamespaceSeperator() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-    );
+  public function testGetNamespaceSeparator() {
+    $this->assertEquals('\\', $this->object->getNamespaceSeparator());
   }
 
   /**
    * @todo Implement testSetFileExtension().
    */
   public function testSetFileExtension() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-    );
+    $this->object->setFileExtension('test');
+
+    $fe = $this->reflector->getProperty('fileExtension');
+    $fe->setAccessible('true');
+
+    $this->assertEquals('test', $fe->getValue($this->object));
   }
 
   /**
    * @todo Implement testGetFileExtension().
    */
   public function testGetFileExtension() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-    );
+    $this->assertEquals('.php', $this->object->getFileExtension());
   }
 
   /**
    * @todo Implement testGetRegisteredNamespaces().
    */
   public function testGetRegisteredNamespaces() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-    );
+    $this->object->registerNamespace('test');
+    $this->assertArrayHasKey('test', $this->object->getRegisteredNamespaces());
   }
 
   /**
    * @todo Implement testRegisterNamespace().
    */
   public function testRegisterNamespace() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-    );
+    $this->object->registerNamespace('test');
+
+    $ns = $this->reflector->getProperty('namespaces');
+    $ns->setAccessible('true');
+
+    $this->assertArrayHasKey('test', $ns->getValue($this->object));
   }
 
   /**
    * @todo Implement testRegisterNamespaces().
    */
   public function testRegisterNamespaces() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-    );
+    $this->object->registerNamespaces(array(
+      'test'  => null,
+      'test2' => null
+    ));
+
+    $ns = $this->reflector->getProperty('namespaces');
+    $ns->setAccessible('true');
+
+    $this->assertArrayHasKey('test', $ns->getValue($this->object));
+    $this->assertArrayHasKey('test2', $ns->getValue($this->object));
   }
 
   /**
    * @todo Implement testRegister().
    */
   public function testRegister() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-    );
+    $this->object->register();
+
+    $loaders = \spl_autoload_functions();
+
+    $this->assertType('object', $loaders[0][0]);
+    $this->assertEquals('Autoload\Autoload', get_class($loaders[0][0]));
   }
 
   /**
    * @todo Implement testUnregister().
    */
   public function testUnregister() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-    );
+    $this->object->unregister();
+
+    $loaders = \spl_autoload_functions();
+
+    $this->assertEquals(array(), $loaders);
   }
 
   /**
    * @todo Implement testLoadClass().
    */
   public function testLoadClass() {
-    // Remove the following lines when you implement this test.
-    $this->markTestIncomplete(
-            'This test has not been implemented yet.'
-    );
+    $this->object->registerNamespace('Mock', dirname(__FILE__).'/../');
+    $this->object->loadClass('Mock\Mock');
+
+    $this->assertContains(realpath(dirname(__FILE__).'/../Mock').'/Mock.php', \get_included_files());    
   }
 
 }
