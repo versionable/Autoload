@@ -17,5 +17,8 @@
          highlights="true"/>
     <log type="testdox-html"
          target="test/report/testdox.html"/>
+    <log type="juni"
+         target="test/report/logfile.xml"
+         logIncompleteSkipped="false"/>
   </logging>
 </phpunit>
