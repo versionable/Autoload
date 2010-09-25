@@ -3,8 +3,11 @@
 namespace Autoload;
 
 include(__DIR__.'/Exception/AutoloadException.php');
+include(__DIR__.'/Exception/ClassException.php');
+include(__DIR__.'/Exception/FileException.php');
 
-use Autoload\Exception\AutoloadException;
+use Autoload\Exception\ClassException;
+use Autoload\Exception\FileException;
 
 /**
  * Autoloader based on the SplClassLoader implementation that implements the
@@ -173,7 +176,7 @@ class Autoload
 
         if(!file_exists($path))
         {
-          throw new AutoloadException(sprintf("File %s does not exist", $path));
+          throw new FileException(sprintf("File %s does not exist", $path));
         }
 
         require $path;
@@ -182,6 +185,6 @@ class Autoload
       }
     }
 
-    throw new AutoloadException(sprintf("Class or Interface '%s' not found.", $className));
+    throw new ClassException(sprintf("Class or Interface '%s' not found.", $className));
   }
 }

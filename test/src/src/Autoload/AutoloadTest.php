@@ -42,9 +42,6 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
     $this->object->unregister();
   }
 
-  /**
-   * @todo Implement testSetNamespaceSeparator().
-   */
   public function testSetNamespaceSeparator() {
     $this->object->setNamespaceSeparator('test');
 
@@ -54,16 +51,10 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('test', $ns->getValue($this->object));
   }
 
-  /**
-   * @todo Implement testGetNamespaceSeparator().
-   */
   public function testGetNamespaceSeparator() {
     $this->assertEquals('\\', $this->object->getNamespaceSeparator());
   }
 
-  /**
-   * @todo Implement testSetFileExtension().
-   */
   public function testSetFileExtension() {
     $this->object->setFileExtension('test');
 
@@ -73,24 +64,15 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('test', $fe->getValue($this->object));
   }
 
-  /**
-   * @todo Implement testGetFileExtension().
-   */
   public function testGetFileExtension() {
     $this->assertEquals('.php', $this->object->getFileExtension());
   }
 
-  /**
-   * @todo Implement testGetRegisteredNamespaces().
-   */
   public function testGetRegisteredNamespaces() {
     $this->object->registerNamespace('test');
     $this->assertArrayHasKey('test', $this->object->getRegisteredNamespaces());
   }
 
-  /**
-   * @todo Implement testRegisterNamespace().
-   */
   public function testRegisterNamespace() {
     $this->object->registerNamespace('test');
 
@@ -100,9 +82,6 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
     $this->assertArrayHasKey('test', $ns->getValue($this->object));
   }
 
-  /**
-   * @todo Implement testRegisterNamespaces().
-   */
   public function testRegisterNamespaces() {
     $this->object->registerNamespaces(array(
       'test'  => null,
@@ -116,9 +95,6 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
     $this->assertArrayHasKey('test2', $ns->getValue($this->object));
   }
 
-  /**
-   * @todo Implement testRegister().
-   */
   public function testRegister() {
     $this->object->register();
 
@@ -128,9 +104,6 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals('Autoload\Autoload', get_class($loaders[0][0]));
   }
 
-  /**
-   * @todo Implement testUnregister().
-   */
   public function testUnregister() {
     $this->object->unregister();
 
@@ -139,9 +112,6 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
     $this->assertEquals(array(), $loaders);
   }
 
-  /**
-   * @todo Implement testLoadClass().
-   */
   public function testLoadClass() {
     $this->object->registerNamespace('Mock', dirname(__FILE__).'/../');
     $this->object->loadClass('Mock\Mock');
@@ -149,6 +119,19 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
     $this->assertContains(realpath(dirname(__FILE__).'/../Mock').'/Mock.php', \get_included_files());    
   }
 
+  public function testNoClass() {
+    $this->setExpectedException('Autoload\Exception\AutoloadException');
+    
+    $this->object->loadClass('Mock');
+  }
+
+  public function testNoFile() {
+    $this->setExpectedException('Autoload\Exception\AutoloadException');
+
+    $this->object->registerNamespace('Mock', dirname(__FILE__).'/../');
+
+    $this->object->loadClass('Mock\Mock2.php');
+  }
 }
 
 ?>
