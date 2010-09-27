@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Autoload" basedir="./" default="all">
+  <property name="tmp" value="/tmp" />
+  <property name="wsname" value="test" />
+  <property name="package" value="${phing.project.name}" override="true" />
+  <property name="builddir" value="${tmp}/build/${phing.project.name}" override="true" />
+  <property name="srcdir" value="src/" override="true" />
+  <property name="reportdir" value="${builddir}/test/reports" />
+  <property name="docsdir" value="test/report/api" />
+
+  <target name="setup" description="run tests">
+    <!-- Create dirs -->
+    <mkdir dir="${reportdir}"/>
+    <mkdir dir="${reportdir}/coverage"/>
+    <mkdir dir="${docsdir}"/>
+  </target>
+
+  <target name="tests" depends="setup" description="run tests">
+    <exec command="phpunit --configuration test/phpunit.xml"/>
+  </target>
+
+  <target name="docs" depends="setup,tests" description="generate API documentation">
+    <phpdoc title="Autoload ${version}"
+            sourcecode="yes"
+            destdir="${docsdir}"
+            output="HTML:frames:earthli"
+            quiet="true">
+      <fileset dir="${srcdir}"/>
+    </phpdoc>
+  </target>
+  
+  <target name="all" depends="setup,tests,docs" description="run all targets"/>
+</project>
