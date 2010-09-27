@@ -13,37 +13,64 @@ use Autoload\Exception\FileException;
  * Autoloader based on the SplClassLoader implementation that implements the
  * technical interoperability standards for PHP 5.3 namespaces and class names.
  *
- *     // Example which loads classes for the Doctrine Common package and Symfony in the
- *     // Doctrine\Common namespace and Symfony namespace.
- *     $classLoader = new Autoload();
- *     $classLoader->registerNamespace('Doctrine\Common', '/path/to/doctrine');
- *     $classLoader->registerNamespace('Symfony', '/path/to/symfony');
- *     $classLoader->register();
+ * <code>
+ * <?php
  *
- *     // Example which loads classes for the Doctrine Common package and Symfony in the
- *     // Doctrine\Common namespace and Symfony namespace. (Uses new method to group registrations)
- *     $classLoader = new Autoload();
- *     $classLoader->registerNamespaces(array(
- *       'Doctrine\Common' => '/path/to/doctrine',
- *       'Symfony' => '/path/to/symfony',
- *     ));
- *     $classLoader->register();
+ * // Example which loads classes for the Doctrine Common package and Symfony in the
+ * // Doctrine\Common namespace and Symfony namespace.
+ * $classLoader = new Autoload();
+ * $classLoader->registerNamespace('Doctrine\Common', '/path/to/doctrine');
+ * $classLoader->registerNamespace('Symfony', '/path/to/symfony');
+ * $classLoader->register();
  *
- * @author Harry Walter <harry.walter@lqdinternet.com>
+ * ?>
+ * </code>
+ *
+ * <code>
+ * <?php
+ * 
+ * // Example which loads classes for the Doctrine Common package and Symfony in the
+ * // Doctrine\Common namespace and Symfony namespace. (Uses new method to group registrations)
+ * $classLoader = new Autoload();
+ * $classLoader->registerNamespaces(array(
+ *   'Doctrine\Common' => '/path/to/doctrine',
+ *   'Symfony' => '/path/to/symfony',
+ * ));
+ * $classLoader->register();
+ *
+ * ?>
+ * </code>
+ *
+ * @author Harry Walter <harry@versionable.co.uk>
  * @author Jonathan H. Wage <jonwage@gmail.com>
  * @author Roman S. Borschel <roman@code-factory.org>
  * @author Matthew Weier O'Phinney <matthew@zend.com>
  * @author Kris Wallsmith <kris.wallsmith@gmail.com>
  * @author Fabien Potencier <fabien.potencier@symfony-project.org>
+ *
+ * @package Autoload
+ * @filesource
  */
 class Autoload
 {
+  /**
+   *
+   * @var string
+   */
   private $namespaceSeparator = '\\';
+  /**
+   *
+   * @var string
+   */
   private $fileExtension = '.php';
+  /**
+   *
+   * @var array
+   */
   private $namespaces = array();
 
   /**
-   * Creates a new <tt>Autoload</tt> that loads classes of the
+   * Creates a new Autoload instance that loads classes of the
    * specified namespaces.
    *
    * @return void
@@ -54,7 +81,7 @@ class Autoload
   /**
    * Sets the namespace separator used by classes in the namespace of this class loader.
    *
-   * @param string $sep The separator to use.
+   * @param string $sep
    * @return void
    */
   public function setNamespaceSeparator($sep)
@@ -132,6 +159,7 @@ class Autoload
 
   /**
    * Installs this class loader on the SPL autoload stack.
+   * Remove from autoloader stack with @see unregister()
    *
    * @return void
    */
@@ -153,7 +181,7 @@ class Autoload
   /**
    * Loads the given class or interface.
    *
-   * @param string $className The name of the class to load.
+   * @param string $className
    * @return void
    */
   public function loadClass($className)

@@ -23,7 +23,7 @@
     <phpdoc title="Autoload"
             sourcecode="yes"
             destdir="${docsdir}"
-            output="HTML:frames:earthli"
+            output="HTML:frames:DOM/phphtmllib"
             quiet="true">
       <fileset dir="${srcdir}"/>
     </phpdoc>

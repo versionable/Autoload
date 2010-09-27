@@ -3,9 +3,25 @@
 namespace Autoload\Exception;
 
 /**
- * Description of AutoloadException
+ * Base exception class for Autoload
  *
- * @author harry
+ * <code>
+ * <?php
+ *
+ * include 'src/Autoload/Exception/AutoloadException.php';
+ *
+ * use Autoload\Exception\AutoloadException;
+ *
+ * throw new AutloadException('General Error');
+ *
+ * ?>
+ * </code>
+ *
+ * @author Harry Walter <harry@versionable.co.uk>
+ *
+ * @package Autoload
+ * @subpackage Exception
+ * @filesource
  */
 class AutoloadException extends \RunTimeException
 {
