@@ -5,7 +5,7 @@
   <property name="package" value="${phing.project.name}" override="true" />
   <property name="builddir" value="${tmp}/build/${phing.project.name}" override="true" />
   <property name="srcdir" value="src/" override="true" />
-  <property name="reportdir" value="${builddir}/test/reports" />
+  <property name="reportdir" value="${builddir}/test/report" />
   <property name="docsdir" value="test/report/api" />
 
   <target name="setup" description="run tests">
@@ -20,7 +20,7 @@
   </target>
 
   <target name="docs" depends="setup,tests" description="generate API documentation">
-    <phpdoc title="Autoload ${version}"
+    <phpdoc title="Autoload"
             sourcecode="yes"
             destdir="${docsdir}"
             output="HTML:frames:earthli"
