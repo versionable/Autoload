@@ -159,8 +159,9 @@ class Autoload
 
   /**
    * Installs this class loader on the SPL autoload stack.
-   * Remove from autoloader stack with @see unregister()
+   * Remove from autoloader stack with {@link unregister()}
    *
+   * @see spl_autoload_register()
    * @return void
    */
   public function register()
@@ -171,6 +172,7 @@ class Autoload
   /**
    * Uninstalls this class loader from the SPL autoloader stack.
    *
+   * @see spl_autoload_unregister()
    * @return void
    */
   public function unregister()
