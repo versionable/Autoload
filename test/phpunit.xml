@@ -11,14 +11,14 @@
   </testsuite>
   <logging>
     <log type="coverage-html"
-         target="test/report/coverage"
+         target="build/Autoload/test/report/coverage"
          charset="UTF-8"
          yui="true"
          highlights="true"/>
     <log type="testdox-html"
-         target="test/report/testdox.html"/>
+         target="buidl/Autoload/test/report/testdox.html"/>
     <log type="junit"
-         target="test/report/logfile.xml"
+         target="build/Autoload/test/report/logfile.xml"
          logIncompleteSkipped="false"/>
   </logging>
 </phpunit>

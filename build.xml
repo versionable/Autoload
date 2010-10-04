@@ -6,7 +6,7 @@
   <property name="builddir" value="${tmp}/build/${phing.project.name}" override="true" />
   <property name="srcdir" value="src/" override="true" />
   <property name="reportdir" value="${builddir}/test/report" />
-  <property name="docsdir" value="test/report/api" />
+  <property name="docsdir" value="${builddir}/test/report/api" />
 
   <target name="setup" description="run tests">
     <!-- Create dirs -->
@@ -20,8 +20,8 @@
   </target>
 
   <target name="standards" depends="setup" description="test for code standards">
-    <exec command="phpmd ${srcdir} xml codesize,unusedcode,naming,design --reportfile test/report/pmd.xml"/>
-    <exec command="phpcs --report=checkstyle --standard=PEAR --extensions=php --tab-width=4 --report-file=./test/report/phpcs.xml ${srcdir}"/>
+    <exec command="phpmd ${srcdir} xml codesize,unusedcode,naming,design --reportfile ${reportdir}/pmd.xml"/>
+    <exec command="phpcs --report=checkstyle --standard=PEAR --extensions=php --tab-width=4 --report-file=.${reportdir}/phpcs.xml ${srcdir}"/>
   </target>
 
   <target name="docs" depends="setup,tests" description="generate API documentation">
