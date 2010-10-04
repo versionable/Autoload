@@ -2,9 +2,9 @@
 
 namespace Autoload;
 
-include(__DIR__.'/Exception/AutoloadException.php');
-include(__DIR__.'/Exception/ClassException.php');
-include(__DIR__.'/Exception/FileException.php');
+require __DIR__.'/Exception/AutoloadException.php';
+require __DIR__.'/Exception/ClassException.php';
+require __DIR__.'/Exception/FileException.php';
 
 use Autoload\Exception\ClassException;
 use Autoload\Exception\FileException;
@@ -84,9 +84,9 @@ class Autoload
    * @param string $sep
    * @return void
    */
-  public function setNamespaceSeparator($sep)
+  public function setNamespaceSeparator($separator)
   {
-    $this->namespaceSeparator = $sep;
+    $this->namespaceSeparator = $separator;
   }
 
   /**
@@ -137,9 +137,9 @@ class Autoload
    * @param string $includePath
    * @return void
    */
-  public function registerNamespace($ns, $includePath = null)
+  public function registerNamespace($namespace, $includePath = null)
   {
-    $this->namespaces[$ns] = $includePath;
+    $this->namespaces[$namespace] = $includePath;
   }
 
   /**

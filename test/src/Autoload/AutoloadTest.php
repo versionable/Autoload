@@ -116,7 +116,7 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
     $this->object->registerNamespace('Mock', dirname(__FILE__).'/../');
     $this->object->loadClass('Mock\Mock');
 
-    $this->assertContains(realpath(dirname(__FILE__).'/../Mock').'/Mock.php', \get_included_files());    
+    $this->assertContains(realpath(dirname(__FILE__).'/../Mock').'/Mock.php', \get_included_files());
   }
 
   public function testNoClass() {
