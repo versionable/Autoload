@@ -20,7 +20,7 @@
   </target>
 
   <target name="standards" depends="setup" description="test for code standards">
-    <exec command="phpmd ${srcdir} xml codesize,unusedcode,nameing,design --reportfile test/report/pmd.xml"/>
+    <exec command="phpmd ${srcdir} xml codesize,unusedcode,naming,design --reportfile test/report/pmd.xml"/>
     <exec command="phpcs --report=checkstyle --standard=PEAR --extensions=php --tab-width=4 --report-file=test/report/phpcs.xml ${srcdir}"/>
   </target>
 
