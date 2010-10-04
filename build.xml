@@ -19,6 +19,11 @@
     <exec command="phpunit --configuration test/phpunit.xml"/>
   </target>
 
+  <target name="standards" depends="setup" description="test for code standards">
+    <exec command="phpmd ${srcdir} xml codesize,unusedcode,nameing,design --reportfile ${reportdir}/pmd.xml"/>
+    <exec command="phpcs --report=checkstyle --standard=PEAR --extensions=php --tab-width=4 --report-file=${reportdir}/phpcs.xml ${srcdir}"/>
+  </target>
+
   <target name="docs" depends="setup,tests" description="generate API documentation">
     <phpdoc title="Autoload"
             sourcecode="yes"
@@ -29,5 +34,5 @@
     </phpdoc>
   </target>
   
-  <target name="all" depends="setup,tests,docs" description="run all targets"/>
+  <target name="all" depends="setup,tests,standards,docs" description="run all targets"/>
 </project>
