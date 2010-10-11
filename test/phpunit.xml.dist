@@ -16,7 +16,7 @@
          yui="true"
          highlights="true"/>
     <log type="testdox-html"
-         target="buidl/Autoload/test/report/testdox.html"/>
+         target="build/Autoload/test/report/testdox.html"/>
     <log type="junit"
          target="build/Autoload/test/report/logfile.xml"
          logIncompleteSkipped="false"/>
