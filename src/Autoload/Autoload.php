@@ -1,8 +1,16 @@
 <?php
 
-namespace Autoload;
-
 /**
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.
+ * It is also available through the world-wide-web at this URL:
+ * http://versionable.co.uk/license.html
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@versionable.co.uk so we can send you a copy immediately.
+ *
  * Autoloader based on the SplClassLoader implementation that implements the
  * technical interoperability standards for PHP 5.3 namespaces and class names.
  *
@@ -21,7 +29,7 @@ namespace Autoload;
  *
  * <code>
  * <?php
- * 
+ *
  * // Example which loads classes for the Doctrine Common package and Symfony in the
  * // Doctrine\Common namespace and Symfony namespace. (Uses new method to group registrations)
  * $classLoader = new Autoload();
@@ -34,15 +42,32 @@ namespace Autoload;
  * ?>
  * </code>
  *
- * @author Harry Walter <harry@versionable.co.uk>
- * @author Jonathan H. Wage <jonwage@gmail.com>
- * @author Roman S. Borschel <roman@code-factory.org>
- * @author Matthew Weier O'Phinney <matthew@zend.com>
- * @author Kris Wallsmith <kris.wallsmith@gmail.com>
- * @author Fabien Potencier <fabien.potencier@symfony-project.org>
+ * @category  Autoload
+ * @package   Autoload
+ * @link      Autoload
+ * @copyright Copyright (c) 2010-2015 Versionable (http://www.versionable.co.uk)
+ * @license   http://versionable.co.uk/license.html New BSD License
  *
- * @package Autoload
+ * @author    Harry Walter <harry@versionable.co.uk>
+ * @author    Jonathan H. Wage <jonwage@gmail.com>
+ * @author    Roman S. Borschel <roman@code-factory.org>
+ * @author    Matthew Weier O'Phinney <matthew@zend.com>
+ * @author    Kris Wallsmith <kris.wallsmith@gmail.com>
+ * @author    Fabien Potencier <fabien.potencier@symfony-project.org>
+ *
  * @filesource
+ */
+
+/**
+ * @namespace
+ */
+namespace Autoload;
+
+/**
+ * @category  Autoload
+ * @package   Autoload
+ * @copyright Copyright (c) 2010-2015 Versionable (http://www.versionable.co.uk)
+ * @license   http://versionable.co.uk/license.html New BSD License
  */
 class Autoload
 {
