@@ -113,22 +113,22 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
   }
 
   public function testLoadClass() {
-    $this->object->registerNamespace('Mock', dirname(__FILE__).'/../');
+    $this->object->registerNamespace('Mock', __DIR__.'/../');
     $this->object->loadClass('Mock\Mock');
 
-    $this->assertContains(realpath(dirname(__FILE__).'/../Mock').'/Mock.php', \get_included_files());
+    $this->assertContains(realpath(__DIR__.'/../Mock').'/Mock.php', \get_included_files());
   }
 
   public function testNoClass() {
-    $this->setExpectedException('Autoload\Exception\AutoloadException');
+    $this->setExpectedException('RuntimeException');
     
     $this->object->loadClass('Mock');
   }
 
   public function testNoFile() {
-    $this->setExpectedException('Autoload\Exception\AutoloadException');
+    $this->setExpectedException('RuntimeException');
 
-    $this->object->registerNamespace('Mock', dirname(__FILE__).'/../');
+    $this->object->registerNamespace('Mock', __DIR__.'/../');
 
     $this->object->loadClass('Mock\Mock2.php');
   }

@@ -2,13 +2,6 @@
 
 namespace Autoload;
 
-require __DIR__.'/Exception/AutoloadException.php';
-require __DIR__.'/Exception/ClassException.php';
-require __DIR__.'/Exception/FileException.php';
-
-use Autoload\Exception\ClassException;
-use Autoload\Exception\FileException;
-
 /**
  * Autoloader based on the SplClassLoader implementation that implements the
  * technical interoperability standards for PHP 5.3 namespaces and class names.
@@ -206,7 +199,7 @@ class Autoload
 
         if(!file_exists($path))
         {
-          throw new FileException(sprintf("File %s does not exist", $path));
+          throw new \RuntimeException(sprintf("File %s does not exist", $path));
         }
 
         require $path;
@@ -215,6 +208,6 @@ class Autoload
       }
     }
 
-    throw new ClassException(sprintf("Class or Interface '%s' not found.", $className));
+    throw new \RuntimeException(sprintf("Class or Interface '%s' not found.", $className));
   }
 }
