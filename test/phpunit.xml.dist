@@ -7,7 +7,7 @@
          convertWarningsToExceptions="true"
          stopOnFailure="false">
   <testsuite name="autoload">
-    <file>test/src/Autoload/AutoloadTest.php</file>
+    <file>test/src/Versionable/Autoload/AutoloadTest.php</file>
   </testsuite>
   <logging>
     <log type="coverage-html"
