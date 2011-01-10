@@ -2,8 +2,6 @@
 
 namespace Autoload;
 
-require_once 'PHPUnit/Framework.php';
-
 require_once dirname(__FILE__) . '/../../../../src/Versionable/Autoload/Autoload.php';
 
 use Versionable\Autoload\Autoload;
@@ -100,14 +98,24 @@ class AutoloadTest extends \PHPUnit_Framework_TestCase {
 
     $loaders = \spl_autoload_functions();
 
-    $this->assertType('object', $loaders[0][0]);
-    $this->assertEquals('Versionable\Autoload\Autoload', get_class($loaders[0][0]));
+    foreach($loaders as $loader) {
+      if(is_array($loader)) {
+        $this->assertInternalType('object', $loader[0]);
+        $this->assertInstanceOf('Versionable\Autoload\Autoload', $loader[0]);
+        $this->assertEquals('loadClass', $loader[1]);
+      }
+    }
   }
 
   public function testUnregister() {
     $this->object->unregister();
 
     $loaders = \spl_autoload_functions();
+
+    // unset first entry to forget phpunit
+    if($loaders[0] == "phpunit_autoload") {
+      unset($loaders[0]);
+    }
 
     $this->assertEquals(array(), $loaders);
   }
