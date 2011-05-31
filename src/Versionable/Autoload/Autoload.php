@@ -207,16 +207,10 @@ class Autoload {
 
                 $path = ($includePath !== null ? $includePath . DIRECTORY_SEPARATOR : __DIR__ . DIRECTORY_SEPARATOR) . $fileName;
 
-                if (!file_exists($path)) {
-                    throw new \RuntimeException(sprintf("File %s does not exist", $path));
+                if (file_exists($path)) {
+                    require $path;
                 }
-
-                require $path;
-
-                return true;
             }
         }
-
-        throw new \RuntimeException(sprintf("Class or Interface '%s' not found.", $className));
     }
 }
