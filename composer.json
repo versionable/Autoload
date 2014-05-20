@@ -1,0 +1,29 @@
+{
+    "name": "versionable/autoload",
+    "description": "Namespace compatible autoloader",
+    "type": "library",
+    "keywords": ["autoload", "namespace"],
+    "homepage": "http://versionable.co.uk/projects/autoload",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Harry Walter",
+            "email": "harry.walter@lqdinternet.com",
+            "homepage": "http://harrywalter.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
